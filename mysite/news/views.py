@@ -4,7 +4,7 @@ from .models import News
 
 def index(request):
     template = "news/index.html"
-    news = News.objects.order_by('-created_at')
+    news = News.objects.all()
     context = {
         'news': news,
         'title': 'Список новостей'
