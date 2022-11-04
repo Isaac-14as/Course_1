@@ -40,10 +40,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'mysite.urls'
 
+TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATES_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -58,6 +60,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
