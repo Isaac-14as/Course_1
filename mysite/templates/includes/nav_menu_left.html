@@ -1,0 +1,8 @@
+<div class="nav_menu_left">
+  <div class="nav_menu_left_title">Список категорий</div>
+  <div class="categories_titles">
+    {% for item in categories %}
+      <a class="category_item" href="{% url 'category' item.pk %}">{{ item }}</a>
+    {% endfor %}
+  </div>
+</div>

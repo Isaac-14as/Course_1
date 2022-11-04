@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+
+{% block news_box %}
+  <div class="news_box">
+      <div class="news_box_item">
+        <div class="category_title">Категория: {{ news.category }}</div>
+        <div class="news_content_box">
+          {% if news.photo %}
+          <img src="{{ news.photo.url }}" alt="Изображение не найдено">
+          {% else %}
+            <img src="https://picsum.photos/id/1060/200/300/?blur=2" alt="">
+          {% endif %}
+          <div class="news_content">
+            <p class="news_title">{{ news.title }}</p>
+            <p class="news_text">{{ news.content }}</p>
+          </div>
+        </div>
+        <div class="news_date">{{ news.created_at|date:"Y-m-d H:i:s" }}</div>
+      </div>
+  </div>
+{% endblock %}

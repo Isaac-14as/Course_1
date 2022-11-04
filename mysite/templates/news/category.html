@@ -1,64 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  {% load static %}
-  <link rel="stylesheet" href="{% static 'css/header.css' %}">
-  <link rel="stylesheet" href="{% static 'css/nav_menu_left.css' %}">
-  <link rel="stylesheet" href="{% static 'css/index.css' %}">
-  <title>Document</title>
-</head>
-<body>
-  <div class="header">
-    <div class="header_menu_left">
-      <a class="header_item" href="{% url 'home' %}">Главная</a>
-      <a class="header_item" href="">Добавить новость</a>
-    </div>
-    <div class="header_menu_right">
-
-    </div>
-  </div>
-
-
-  <div class="nav_menu_left">
-    <div class="nav_menu_left_title">Список категорий</div>
-    <div class="categories_titles">
-      {% for item in categories %}
-        <a class="category_item" href="{% url 'category' item.pk %}">{{ item }}</a>
-      {% endfor %}
-    </div>
-  </div>
-
-  <div class="news_box">
-    {% for item in news %}
-      <div class="news_box_item">
-        <div class="category_title">Категория: {{ item.category }}</div>
-        <div class="news_content_box">
-          {% if item.photo %}
-          <img src="{{ item.photo.url }}" alt="Изображение не найдено">
-          {% else %}
-            <img src="https://picsum.photos/id/1060/200/300/?blur=2" alt="">
-          {% endif %}
-          <div class="news_content">
-            <p class="news_title">{{ item.title }}</p>
-            <p class="news_text">{{ item.content }}</p>
-            <button class="btn_read_more">Читать дальше...</button>
-          </div>
-        </div>
-        <div class="news_date">{{ item.created_at|date:"Y-m-d H:i:s" }}</div>
-      </div>
-    {% endfor %}
-  </div>
+{% extends 'base.html' %}
 
 
 
+  {% block nav_menu_left %}
+    {% include 'includes/nav_menu_left.html' %}
+  {% endblock %}
 
 
-</body>
-</html>
+  
+  {% block news_box %}
+    {% include 'includes/news_box.html' %}
+  {% endblock %}

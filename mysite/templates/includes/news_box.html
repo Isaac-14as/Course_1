@@ -1,0 +1,20 @@
+<div class="news_box">
+  {% for item in news %}
+    <div class="news_box_item">
+      <div class="category_title">Категория: {{ item.category }}</div>
+      <div class="news_content_box">
+        {% if item.photo %}
+        <img src="{{ item.photo.url }}" alt="Изображение не найдено">
+        {% else %}
+          <img src="https://picsum.photos/id/1060/200/300/?blur=2" alt="">
+        {% endif %}
+        <div class="news_content">
+          <p class="news_title">{{ item.title }}</p>
+          <p class="news_text">{{ item.content|safe|linebreaks|truncatewords:50 }}</p>
+          <a href="{% url 'view_news' item.pk %}" class="btn_read_more">Читать дальше...</a>
+        </div>
+      </div>
+      <div class="news_date">{{ item.created_at|date:"Y-m-d H:i:s" }}</div>
+    </div>
+  {% endfor %}
+</div>
