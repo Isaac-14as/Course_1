@@ -1,4 +1,5 @@
 from django.db import models
+from django.shortcuts import reverse
 
 class News(models.Model):
     title = models.CharField(max_length=150, verbose_name='Наименование')
@@ -14,6 +15,10 @@ class News(models.Model):
         verbose_name_plural = 'Новости'
         ordering = ['-created_at']
 
+    def get_absolute_url(self):
+        return f'/news/{self.pk}'
+    
+    
     def __str__(self):
         return self.title
 
